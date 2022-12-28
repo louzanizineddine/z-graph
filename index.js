@@ -22,4 +22,6 @@ g.addEdge('C', 'F')
 // console.log(g);
 
 g.bfs('A');
+console.log("///");
+g.dfs('A');
 // console.log(g);

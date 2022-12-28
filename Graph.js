@@ -97,4 +97,16 @@ export class Graph {
 
   }
 
+  dfs(start , visted = new Set()) {
+    visted.add(start);
+
+    const neighbours = this.getVertex(start);
+
+    for (const n of neighbours) {
+      if (!visted.has(n)) {
+        console.log(n);
+        this.dfs(n , visted)
+      }
+    }
+  }
 }
