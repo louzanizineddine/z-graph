@@ -109,4 +109,43 @@ export class Graph {
       }
     }
   }
+
+
+  dijkstra(graph, source) {
+    const distances = {};
+    const previous = {};
+    const queue = [];
+  
+    // Set initial distances to infinity and the source to 0
+    for (const vertex in graph) {
+      if (vertex === source) {
+        distances[vertex] = 0;
+        queue.push(vertex);
+      } else {
+        distances[vertex] = Infinity;
+      }
+      previous[vertex] = null;
+    }
+  
+    // Process the queue until it is empty
+    while (queue.length > 0) {
+      queue.sort((a, b) => distances[a] - distances[b]);
+  
+      const currentVertex = queue.shift();
+
+      for (const neighbor in graph[currentVertex]) {
+        
+        const distance = distances[currentVertex] + graph[currentVertex][neighbor];
+        if (distance < distances[neighbor]) {
+        
+          distances[neighbor] = distance;
+          previous[neighbor] = currentVertex;
+          queue.push(neighbor);
+        }
+      }
+    }
+  
+    return { distances, previous };
+  }
+  
 }
